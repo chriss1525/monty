@@ -2,13 +2,13 @@
 /**
  * push - puts an item at the top of a stack
  * @stack: pointer to stack
- * @data: buffer
+ * @line_number: number of read line
  * Return: nothing
  */
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
-	(void) line_number;
+	(void)line_number;
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -32,12 +32,13 @@ void push(stack_t **stack, unsigned int line_number)
 
 /**
  * pall - prints all the values on stack staarting from top
- * 
-*/
+ * @line_number: number of read line
+ * @stack: pointer to stack
+ */
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
-	(void) line_number;
+	(void)line_number;
 
 	if (stack == NULL)
 		exit(EXIT_FAILURE);

@@ -12,17 +12,18 @@ void read_file(char *path)
 	char *line;
 	int ln;
 
-			/*open file*/
+	/*open file*/
 	FILE *file = fopen(path, "r");
+
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", path);
 		exit(EXIT_FAILURE);
 	}
-			/* read line in file*/
+	/* read line in file*/
 	while ((nread = getline(&line, &buffer, file)) != -1)
 	{
-			/*break lines into tokens*/
+		/*break lines into tokens*/
 		get_tokens(line, ++ln);
 	}
 

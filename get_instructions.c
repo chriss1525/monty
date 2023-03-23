@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * get_opcodes - selcts instruction to follow
+ * opcodes - selcts instruction to follow
  *
  * @opc: code passed
  *
