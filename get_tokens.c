@@ -6,7 +6,7 @@
  * @line_number: line number
  * Return: nothing
  */
-void get_tokens(char *line, int line_number)
+char *get_tokens(char *line, int line_number)
 {
 	char *token;
 	stack_t *stack = NULL; /* Initialize the stack pointer */
@@ -14,14 +14,22 @@ void get_tokens(char *line, int line_number)
 
 	token = strtok(line, " \n");
 
-	while (token)
+	while (token != NULL)
 	{
 		/* Call the appropriate function based on the instruction token */
 		func = opcodes(token);
-		if (func)
+		if (func != NULL)
+		{
 			func(&stack, line_number);
+			return (token);
+		}
+		else
+		{
+			errors(line_number, 2);
+			exit(EXIT_FAILURE);
+		}
 
-		/*printf("%s\n", token);*/
 		token = strtok(NULL, " \n");
 	}
+	return (NULL);
 }

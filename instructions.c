@@ -40,7 +40,7 @@ void pall(stack_t **stack, unsigned int line_number)
 	stack_t *new_node;
 	(void)line_number;
 
-	if (stack == NULL)
+	if (*stack == NULL)
 		exit(EXIT_FAILURE);
 	new_node = *stack;
 	while (new_node != NULL)

@@ -39,10 +39,11 @@ typedef struct instruction_s
 extern int data;
 int data;
 
-void read_file(char *path);
-void get_tokens(char *line, int line_number);
+char *read_file(char *path);
+char *get_tokens(char *line, int line_number);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+void errors(unsigned int line_num, int errno);
 void (*opcodes(char *opc))(stack_t **stack, unsigned int line_number);
 
 #endif /*MONTY_H*/

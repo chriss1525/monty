@@ -5,12 +5,13 @@
  * Return: pointer to read file
  */
 
-void read_file(char *path)
+char *read_file(char *path)
 {
 	size_t buffer = 0;
 	ssize_t nread;
-	char *line;
-	int ln;
+	char *line = NULL;
+	int ln = 1;
+	char *results;
 
 	/*open file*/
 	FILE *file = fopen(path, "r");
@@ -24,8 +25,10 @@ void read_file(char *path)
 	while ((nread = getline(&line, &buffer, file)) != -1)
 	{
 		/*break lines into tokens*/
-		get_tokens(line, ++ln);
+		results = get_tokens(line, ++ln);
+		return (results);
 	}
-
+	free(line);
 	fclose(file);
+	return (NULL);
 }
