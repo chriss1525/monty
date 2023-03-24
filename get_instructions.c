@@ -14,6 +14,7 @@ void (*opcodes(char *opc))(stack_t **stack, unsigned int line_number)
 		{"pall", pall},
 		{NULL, NULL}};
 	int i;
+
 	data = 0;
 	for (i = 0; instruct[i].opcode; i++)
 	{

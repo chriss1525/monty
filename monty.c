@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
 	exit(EXIT_SUCCESS);
 }
 
-
 #include "monty.h"
 
 /**
@@ -35,5 +34,5 @@ int main(int argc, char *argv[])
  */
 stack_t *create_stack(void)
 {
-    return (NULL);
+	return (NULL);
 }

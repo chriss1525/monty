@@ -2,6 +2,7 @@
 /**
  * read_file - opens and reads monty bytecode file
  * @path: path to monty bytecode
+ * @stack: pointer pointer stack
  * Return: pointer to read file
  */
 
