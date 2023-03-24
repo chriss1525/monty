@@ -6,30 +6,48 @@
  * @line_number: line number
  * Return: nothing
  */
-char *get_tokens(char *line, int line_number)
+void get_tokens(char *line, stack_t **stack, int line_number)
 {
 	char *token;
-	stack_t *stack = NULL; /* Initialize the stack pointer */
 	void (*func)(stack_t **, unsigned int);
 
 	token = strtok(line, " \n");
 
 	while (token != NULL)
 	{
-		/* Call the appropriate function based on the instruction token */
-		func = opcodes(token);
-		if (func != NULL)
+		/*printf("%d: %s\n", line_number, token);*/
+
+		if (strcmp(token, "push") == 0)
 		{
-			func(&stack, line_number);
-			return (token);
+			token = strtok(NULL, " \n");
+			if (token == NULL)
+			{
+				errors(line_number, 3);
+				return;
+			}
+			data = atoi(token);
+			push(stack, line_number);
+			/*printf("%d: %s\n", line_number, token);*/
+		}
+		else if (strcmp(token, "pall") == 0)
+		{
+			/*printf("pall instruction encountered at line %d\n", line_number);*/
+			pall(stack, line_number);
 		}
 		else
 		{
-			errors(line_number, 2);
-			exit(EXIT_FAILURE);
+			func = opcodes(token);
+			if (func != NULL)
+			{
+				func(stack, line_number);
+			}
+			else
+			{
+				errors(line_number, 2);
+				return;
+			}
 		}
 
 		token = strtok(NULL, " \n");
 	}
-	return (NULL);
 }

@@ -9,6 +9,8 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
 	(void)line_number;
+
+	/*printf("pall function called from line %d\n", line_number);*/
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -37,15 +39,17 @@ void push(stack_t **stack, unsigned int line_number)
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
+	
+	stack_t *new;
 	(void)line_number;
 
+	/*printf("pall function called from line %d\n", line_number);
 	if (*stack == NULL)
-		exit(EXIT_FAILURE);
-	new_node = *stack;
-	while (new_node != NULL)
+		exit(EXIT_FAILURE);*/
+	new = *stack;
+	while (new != NULL)
 	{
-		fprintf(stdout, "%d\n", new_node->n);
-		new_node = new_node->next;
+		printf("%d\n", new->n);
+		new = new->next;
 	}
 }
