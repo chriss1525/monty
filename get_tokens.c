@@ -10,6 +10,7 @@
 void get_tokens(char *line, stack_t **stack, int line_number)
 {
 	char *token;
+	char *opc;
 	void (*func)(stack_t **, unsigned int);
 
 	/* Remove trailing '$' character */
@@ -28,7 +29,7 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 			token = strtok(NULL, " \n");
 			if (token == NULL)
 			{
-				errors(line_number, 3);
+				errors(line_number - 1, 2);
 				return;
 			}
 			data = atoi(token);
@@ -42,7 +43,8 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 		}
 		else
 		{
-			func = opcodes(token);
+			opc = token;
+			func = opcodes(opc);
 			if (func != NULL)
 			{
 				func(stack, line_number);
@@ -52,6 +54,7 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 				errors(line_number, 2);
 				return;
 			}
+			printf("Processing opcode: %s\n", opc);
 		}
 
 		token = strtok(NULL, " \n");
