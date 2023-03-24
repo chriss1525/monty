@@ -11,6 +11,11 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 	char *token;
 	void (*func)(stack_t **, unsigned int);
 
+	/* Remove trailing '$' character */
+	line[strcspn(line, "\n")] = '\0';
+	if (line[strlen(line) - 1] == '$')
+		line[strlen(line) - 1] = '\0';
+
 	token = strtok(line, " \n");
 
 	while (token != NULL)
