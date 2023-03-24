@@ -44,6 +44,8 @@ void get_tokens(char *line, stack_t **stack, int line_number);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void errors(unsigned int line_num, int errn_num);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
 void (*opcodes(char *opc))(stack_t **stack, unsigned int line_number);
 stack_t *create_stack(void);
 

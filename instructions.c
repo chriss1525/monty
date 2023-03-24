@@ -50,3 +50,49 @@ void pall(stack_t **stack, unsigned int line_number)
 		new = new->next;
 	}
 }
+
+/**
+ * pint - print value at the top of the stack
+ * @stack: stack
+ * @line_number: line number of instruction
+ */
+void pint(stack_t **stack, unsigned int line_number)
+{
+	if (!(*stack))
+	{
+		errors(line_number, 2);
+		exit(EXIT_FAILURE);
+	}
+
+	printf("%d\n", (*stack)->n);
+}
+
+/**
+ * _pop - removes top element from stack
+ * @stack: double pointer to the beggining of the stack
+ * @line_number: number of lines in the opcode file
+ *
+ * Return: void
+ */
+
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *aux_stack;
+
+	if (*stack == NULL)
+		errors(line_number, 1);
+
+	if ((*stack)->next == NULL)
+	{
+		free(*stack);
+		*stack = NULL;
+	}
+	else
+	{
+		aux_stack = (*stack)->next;
+		(*stack) = aux_stack;
+		aux_stack = aux_stack->prev;
+		(*stack)->prev = NULL;
+		free(aux_stack);
+	}
+}
