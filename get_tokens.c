@@ -30,7 +30,6 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 			if (token == NULL)
 			{
 				errors(line_number - 1, 2);
-				return;
 			}
 			data = atoi(token);
 			push(stack, line_number);
@@ -51,7 +50,7 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 			}
 			else
 			{
-				errors(line_number, 2);
+				fprintf(stderr, "L%d: unknown instruction %s", line_number - 1, token);
 				return;
 			}
 			/*printf("Processing opcode: %s\n", opc);*/

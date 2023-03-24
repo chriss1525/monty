@@ -28,6 +28,7 @@ void (*opcodes(char *opc))(stack_t **stack, unsigned int line_number)
 		}
 	}
 
+	return (NULL);
 	/*printf("Error: Unknown instruction %s\n", opc);*/
 	exit(EXIT_FAILURE);
 }

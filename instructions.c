@@ -60,7 +60,7 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack))
 	{
-		errors(line_number, 2);
+		errors(line_number - 1, 4);
 		exit(EXIT_FAILURE);
 	}
 

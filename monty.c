@@ -34,5 +34,7 @@ int main(int argc, char *argv[])
  */
 stack_t *create_stack(void)
 {
-	return (NULL);
+	stack_t *stack = NULL;
+	push(&stack, 0);
+	return (stack);
 }
