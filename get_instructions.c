@@ -13,6 +13,9 @@ void (*opcodes(char *opc))(stack_t **stack, unsigned int line_number)
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
+		{"swap", swap},
+		{"nop", nop},
+		{"add", add},
 		{NULL, NULL}};
 	int i;
 
