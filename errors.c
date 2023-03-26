@@ -11,16 +11,34 @@
 void errors(unsigned int line_num, int err_num)
 {
 	if (err_num == 1)
+	{
+		printf("1\n");
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_num);
+	}
 	else if (err_num == 2)
+	{
+		printf("1\n");
 		fprintf(stderr, "L%d: usage: push integer\n", line_num);
+	}
 	else if (err_num == 3)
+	{
+		printf("1\n");
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
+	}
 	else if (err_num == 4)
+	{
+		printf("1\n");
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_num);
+	}
 	else if (err_num == 5)
+	{
+		printf("1\n");
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_num);
+	}
 	else if (err_num == 6)
+	{
+		printf("1\n");
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_num);
+	}
 	exit(EXIT_FAILURE);
 }

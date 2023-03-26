@@ -29,7 +29,7 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 			if (token == NULL)
 			{
 				errors(line_number - 1, 2);
-				printf("Error: unknown instruction on line %d\n", line_number);
+				/*printf("Error: unknown instruction on line %d\n", line_number);*/
 			}
 			push_val = atoi(token);
 			push(stack, line_number);
@@ -39,6 +39,11 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 			pall(stack, line_number);
 		}
 		else if (strcmp(token, "nop") == 0)
+		{
+			/* Ignore any non-integer tokens that come after the first token */
+			return;
+		}
+		else if (strcmp(token, "swap") == 0)
 		{
 			/* Ignore any non-integer tokens that come after the first token */
 			return;
@@ -53,8 +58,9 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 			}
 			else
 			{
-				fprintf(stderr, "L%d: unknown instruction %s", line_number - 1, token);
-				printf("Error: unknown instruction on line %d\n", line_number);
+				printf("1\n");
+				fprintf(stderr, "L%d: unknown instruction %s\n", line_number - 1, token);
+				/*printf("Error: unknown instruction on line %d\n", line_number - 1);*/
 				return;
 			}
 		}
