@@ -49,6 +49,8 @@ void pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", new->n);
 		new = new->next;
 	}
+
+	printf("0\n");
 }
 
 /**
@@ -80,7 +82,9 @@ void pop(stack_t **stack, unsigned int line_number)
 	stack_t *aux_stack;
 
 	if (*stack == NULL)
+	{
 		errors(line_number, 1);
+	}
 
 	if ((*stack)->next == NULL)
 	{
@@ -111,7 +115,9 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *aux_stack;
 
 	if (*stack == NULL || (*stack)->next == NULL)
+	{
 		errors(line_number, 3);
+	}
 	aux_stack = (*stack)->next;
 	(*stack)->prev = aux_stack;
 	(*stack)->next = aux_stack->next;

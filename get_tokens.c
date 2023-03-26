@@ -12,6 +12,7 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 	char *token;
 	char *opc;
 	void (*func)(stack_t **, unsigned int);
+	int push_val = 0;
 
 	/* Remove trailing '$' character */
 	line[strcspn(line, "\n")] = '\0';
@@ -22,23 +23,25 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 
 	while (token != NULL)
 	{
-		/*printf("%d: %s\n", line_number, token);*/
-
 		if (strcmp(token, "push") == 0)
 		{
 			token = strtok(NULL, " \n");
 			if (token == NULL)
 			{
 				errors(line_number - 1, 2);
+				printf("Error: unknown instruction on line %d\n", line_number);
 			}
-			data = atoi(token);
+			push_val = atoi(token);
 			push(stack, line_number);
-			/*printf("%d: %s\n", line_number, token);*/
 		}
 		else if (strcmp(token, "pall") == 0)
 		{
-			/*printf("pall instruction encountered at line %d\n", line_number);*/
 			pall(stack, line_number);
+		}
+		else if (strcmp(token, "nop") == 0)
+		{
+			/* Ignore any non-integer tokens that come after the first token */
+			return;
 		}
 		else
 		{
@@ -51,11 +54,17 @@ void get_tokens(char *line, stack_t **stack, int line_number)
 			else
 			{
 				fprintf(stderr, "L%d: unknown instruction %s", line_number - 1, token);
+				printf("Error: unknown instruction on line %d\n", line_number);
 				return;
 			}
-			/*printf("Processing opcode: %s\n", opc);*/
 		}
 
 		token = strtok(NULL, " \n");
+	}
+
+	/* If we pushed a value, add it to the top of the stack */
+	if (push_val != 0)
+	{
+		(*stack)->n = push_val;
 	}
 }

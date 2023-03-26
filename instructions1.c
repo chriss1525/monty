@@ -15,7 +15,9 @@ void add(stack_t **stack, unsigned int line_number)
 	}
 	aux_stack = *stack;
 	if (aux_stack->next == NULL)
+	{
 		errors(line_number, 5);
+	}
 	aux_stack->next->n += (*stack)->n;
 	*stack = (*stack)->next;
 	free(aux_stack);

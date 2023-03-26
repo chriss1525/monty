@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	read_file(file_name, &stack);
+
 	exit(EXIT_SUCCESS);
 }
 
