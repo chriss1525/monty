@@ -41,7 +41,6 @@ int get_tokens(char *line, stack_t **stack, unsigned int line_number)
 		else
 		{
 			/* Handle unknown instruction */
-			printf("1\n");
 			fprintf(stderr, "L%d: unknown instruction %s", line_number = 1, token);
 			return (1);
 		}
