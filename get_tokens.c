@@ -10,7 +10,7 @@
  * Return: 0 if successful, -1 if an error occurred
  */
 
-void get_tokens(char *line, stack_t **stack, unsigned int line_number)
+int get_tokens(char *line, stack_t **stack, unsigned int line_number)
 {
 	char *token;
 	void (*func)(stack_t * *stack, unsigned int line_number);
@@ -26,8 +26,8 @@ void get_tokens(char *line, stack_t **stack, unsigned int line_number)
 				token = strtok(NULL, " \t\n");
 				if (token == NULL)
 				{
-					fprintf(stderr, "L%d: usage: push integer\n", line_number - 1);
-					/*return (-1);*/
+					errors(line_number - 1, 2);
+					return (-1);
 				}
 				data = strtol(token, NULL, 10);
 				func(stack, line_number);
@@ -40,5 +40,5 @@ void get_tokens(char *line, stack_t **stack, unsigned int line_number)
 		token = strtok(NULL, " \t\n");
 	}
 
-	/*return (0);*/
+	return (0);
 }
