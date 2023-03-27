@@ -37,6 +37,12 @@ int get_tokens(char *line, stack_t **stack, unsigned int line_number)
 				func(stack, line_number);
 			}
 		}
+		else
+		{
+			/* Handle unknown instruction */
+			fprintf(stderr, "L%d: unknown instruction %s", line_number = 1, token);
+			return (-1);
+		}
 		token = strtok(NULL, " \t\n");
 	}
 
