@@ -1,76 +1,44 @@
 #include "monty.h"
 
 /**
- * get_tokens - breaks file line strings to tokens
- * @line: file lines
- * @stack: pointer pointer stack
- * @line_number: line number
- * Return: nothing
+ * get_tokens - breaks a line into tokens and calls the corresponding opcode function
+ *
+ * @line: the line to break into tokens and execute
+ * @stack: a pointer to the stack to manipulate
+ * @line_number: the current line number being executed
+ *
+ * Return: 0 if successful, -1 if an error occurred
  */
-void get_tokens(char *line, stack_t **stack, int line_number)
+
+void get_tokens(char *line, stack_t **stack, unsigned int line_number)
 {
 	char *token;
-	char *opc;
-	void (*func)(stack_t **, unsigned int);
-	int push_val = 0;
+	void (*func)(stack_t * *stack, unsigned int line_number);
 
-	/* Remove trailing '$' character */
-	line[strcspn(line, "\n")] = '\0';
-	if (line[strlen(line) - 1] == '$')
-		line[strlen(line) - 1] = '\0';
-
-	token = strtok(line, " \n");
-
+	token = strtok(line, " \t\n");
 	while (token != NULL)
 	{
-		if (strcmp(token, "push") == 0)
+		func = opcodes(token);
+		if (func != NULL)
 		{
-			token = strtok(NULL, " \n");
-			if (token == NULL)
+			if (strcmp(token, "push") == 0)
 			{
-				errors(line_number - 1, 2);
-				/*printf("Error: unknown instruction on line %d\n", line_number);*/
-			}
-			push_val = atoi(token);
-			push(stack, line_number);
-		}
-		else if (strcmp(token, "pall") == 0)
-		{
-			pall(stack, line_number);
-		}
-		else if (strcmp(token, "nop") == 0)
-		{
-			/* Ignore any non-integer tokens that come after the first token */
-			return;
-		}
-		else if (strcmp(token, "swap") == 0)
-		{
-			/* Ignore any non-integer tokens that come after the first token */
-			return;
-		}
-		else
-		{
-			opc = token;
-			func = opcodes(opc);
-			if (func != NULL)
-			{
+				token = strtok(NULL, " \t\n");
+				if (token == NULL)
+				{
+					fprintf(stderr, "L%d: usage: push integer\n", line_number - 1);
+					/*return (-1);*/
+				}
+				data = strtol(token, NULL, 10);
 				func(stack, line_number);
 			}
 			else
 			{
-				printf("1\n");
-				fprintf(stderr, "L%d: unknown instruction %s\n", line_number - 1, token);
-				/*printf("Error: unknown instruction on line %d\n", line_number - 1);*/
-				return;
+				func(stack, line_number);
 			}
 		}
-
-		token = strtok(NULL, " \n");
+		token = strtok(NULL, " \t\n");
 	}
 
-	/* If we pushed a value, add it to the top of the stack */
-	if (push_val != 0)
-	{
-		(*stack)->n = push_val;
-	}
+	/*return (0);*/
 }
