@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 	stack = create_stack();
 
 	file_name = argv[1];
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -36,5 +37,6 @@ int main(int argc, char *argv[])
 stack_t *create_stack(void)
 {
 	stack_t *stack = NULL;
+
 	return (stack);
 }

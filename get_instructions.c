@@ -6,17 +6,17 @@
  *
  * Return: pointer to the function that executes the instruction
  */
-instruction_t instruct[] = {
-	{"push", push},
-	{"pall", pall},
-	{"pint", pint},
-	{"pop", pop},
-	{"swap", swap},
-	{"nop", nop},
-	{"add", add},
-	{NULL, NULL}};
 void (*opcodes(char *opc))(stack_t **stack, unsigned int line_number)
 {
+	instruction_t instruct[] = {
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"nop", nop},
+		{"add", add},
+		{NULL, NULL}};
 
 	int i;
 
@@ -24,7 +24,7 @@ void (*opcodes(char *opc))(stack_t **stack, unsigned int line_number)
 	{
 		if (strcmp(instruct[i].opcode, opc) == 0)
 		{
-				return (instruct[i].f);
+			return (instruct[i].f);
 		}
 	}
 

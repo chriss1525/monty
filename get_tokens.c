@@ -1,7 +1,8 @@
 #include "monty.h"
 
 /**
- * get_tokens - breaks a line into tokens and calls the corresponding opcode function
+ * get_tokens - breaks a line into tokens
+ * and calls the corresponding opcode function
  *
  * @line: the line to break into tokens and execute
  * @stack: a pointer to the stack to manipulate
@@ -13,7 +14,7 @@
 int get_tokens(char *line, stack_t **stack, unsigned int line_number)
 {
 	char *token;
-	void (*func)(stack_t * *stack, unsigned int line_number);
+	void (*func)(stack_t **stack, unsigned int line_number);
 
 	token = strtok(line, " \t\n");
 	while (token != NULL)
