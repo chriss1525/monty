@@ -68,7 +68,7 @@ void pint(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _pop - removes top element from stack
+ * pop - removes top element from stack
  * @stack: double pointer to the beggining of the stack
  * @line_number: number of lines in the opcode file
  *
